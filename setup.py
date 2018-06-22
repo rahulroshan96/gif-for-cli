@@ -57,6 +57,7 @@ setup(
     tests_require=[
         'coverage>=4.5.1',
     ],
+    test_suite='tests',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
