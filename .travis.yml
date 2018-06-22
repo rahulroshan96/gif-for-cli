@@ -5,10 +5,11 @@ language: python
 python:
   - "3.4"
   - "3.5"
+  - "3.6"
 
 matrix:
   include:
-    - python: "3.4"
+    - python: "3.6"
       env: MODE=flake8
   allow_failures:
     - env: MODE=flake8
