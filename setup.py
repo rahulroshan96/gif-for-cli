@@ -31,10 +31,11 @@ try:
 except:
     pass
 
+third_party_module_existed = False
 try:
     os.symlink(os.path.join(current_dir, '..', 'third_party'), symlink_path)
 except:
-    pass
+    third_party_module_existed = True
 
 packages = find_packages()
 try:
@@ -84,4 +85,7 @@ setup(
     ],
 )
 
-os.unlink(symlink_path)
+if not third_party_module_existed:
+    # Only try to unlink if a symlink was created, but not if
+    # gif_for_cli.third_party was directory (inside a distribution).
+    os.unlink(symlink_path)
