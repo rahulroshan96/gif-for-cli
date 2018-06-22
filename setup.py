@@ -24,20 +24,24 @@ import gif_for_cli
 # Python doesn't seem to have a consistent way of including non-Python files
 # from outside a package directory, nor an obvious way to map a subpackage to
 # a different directory.
-symlink_path = 'gif_for_cli/third_party'
+current_dir = os.path.dirname(__file__)
+symlink_path = os.path.join(current_dir, 'gif_for_cli', 'third_party')
 try:
     os.unlink(symlink_path)
 except:
     pass
 
 try:
-    os.symlink('../third_party', symlink_path)
+    os.symlink(os.path.join(current_dir, '..', 'third_party'), symlink_path)
 except:
     pass
 
 packages = find_packages()
-packages.remove('third_party')
-
+try:
+    packages.remove('third_party')
+except ValueError:
+    # May not be present in builds.
+    pass
 
 setup(
     name='gif-for-cli',
