@@ -30,7 +30,10 @@ try:
 except:
     pass
 
-os.symlink('../third_party', symlink_path)
+try:
+    os.symlink('../third_party', symlink_path)
+except:
+    pass
 
 packages = find_packages()
 packages.remove('third_party')
